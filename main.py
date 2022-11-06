@@ -5,7 +5,9 @@ def validParentheses(parens):
     result = 0  #keep count of opening and closing parentheses
     for val in parens:  #iterate over the string
         result += 1 if val == '(' else -1   #if the char is an opening parenthesis add 1, if is it closing substract 1 
-        if result == -1 : return False #if the result becomes negativa it means there was a closing parenthesis without an opening one at somepoint in the string hence invalid
+        if result == -1 :
+            print(False) 
+            return False #if the result becomes negativa it means there was a closing parenthesis without an opening one at somepoint in the string hence invalid
     print(result == 0 )
     return result == 0 # if the result is 0 then the string is valid, if not then it was an opening parenthesis without a closing one
 
@@ -38,7 +40,7 @@ def formatDuration (seconds):
             if response != '':
                 #if the string wasn't empty then we need the extra 'and ' to the string
                 response = response[:-2]
-                response += ' and ' + str(val) + ' ' + key + 's ' if val > 1 else ' and ' + str(val) + ' ' + key
+                response += ' and ' + str(val) + ' ' + key + 's' if val > 1 else ' and ' + str(val) + ' ' + key
             else :
 
                 response += str(val) + ' ' + key + 's' if val > 1 else str(val) + ' ' + key
@@ -54,11 +56,12 @@ def cinema(card, ticket, perc):
     currT = ticket * perc # the current ticket price for the first visit will be the price of ticket multiplied by the percentage given
     sysA = ticket #sysA is just a sum off all the ticket bought witouth any savings
     count = 1 #var needed to know how many visits has jhon made
-    while  ceil (card + currT + prevT ) > sysA : 
+    while  ceil (card + currT + prevT ) >= sysA : 
         # while statement that holds our condition, the ceil of the sum of the card plus current ticket and all the previous tickets needs to be lower than just 
         # buying the tickets, which will tell us how many visits are required
         sysA += ticket  # next ticket under sys A
         prevT += currT # the current sum of all the prev tickets
         currT *= perc # the next ticket is obtained by a simple multiplication
         count += 1 # add another visit to the counter
+    print(count)
     return count
