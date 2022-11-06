@@ -1,7 +1,11 @@
+from math import ceil
+
+
 def validParentheses(parens):
     result = 0 
     for val in parens:
         result += 1 if val == '(' else -1
+        if result == -1 : return False
     print(result == 0 )
     return result == 0 
 
@@ -40,5 +44,14 @@ def formatDuration (seconds):
     return response
     
 
-    def cinema():
-
+def cinema(card, ticket, perc):
+    prevT = 0 
+    nextT = ticket * perc
+    sysA = ticket
+    count = 1
+    while  ceil (card + nextT + prevT ) > sysA : 
+        sysA += ticket
+        prevT += nextT
+        nextT *= perc
+        count += 1
+    return count
